@@ -94,16 +94,16 @@ async function crop(message) {
     image1.composite(watermark, 0, 0, {
         mode: Jimp.BLEND_SOURCE_OVER
     })
-    await image1.writeAsync('output1.png');
+    await image1.writeAsync('kc-skin-classic.png');
 
     const image2 = await Jimp.read('test.png');
     let watermark2 = await Jimp.read("big.png");
     image2.composite(watermark2, 0, 0, {
         mode: Jimp.BLEND_SOURCE_OVER
     })
-    await image2.writeAsync('output2.png');
+    await image2.writeAsync('kc-skin-slim.png');
 
-    message.reply({ files: ['./output1.png', './output2.png'] });
+    message.reply({ files: ['./kc-skin-classic.png', './kc-skin-slim.png'] });
 
 }
 
