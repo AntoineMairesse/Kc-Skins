@@ -89,13 +89,22 @@ async function crop(message) {
 
     let watermark = await Jimp.read("1.png");
 
-    const image = await Jimp.read('test.png');
+    const image1 = await Jimp.read('test.png');
 
-    image.composite(watermark, 0, 0, {
+    image1.composite(watermark, 0, 0, {
         mode: Jimp.BLEND_SOURCE_OVER
     })
-    await image.writeAsync('output.png');
-    message.reply({ files: ['./output.png'] });
+    await image1.writeAsync('output1.png');
+
+    const image2 = await Jimp.read('test.png');
+    let watermark2 = await Jimp.read("big.png");
+    image2.composite(watermark2, 0, 0, {
+        mode: Jimp.BLEND_SOURCE_OVER
+    })
+    await image2.writeAsync('output2.png');
+
+    message.reply({ files: ['./output1.png', './output2.png'] });
+
 }
 
 client.on('messageCreate', (message) => {
